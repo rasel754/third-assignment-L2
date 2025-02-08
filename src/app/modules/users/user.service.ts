@@ -1,8 +1,8 @@
 
-import { IUser } from "./user.interface";
+import { TUser } from "./user.interface";
 import User from "./user.model";
 
-const createUserIntoDB= async (payload: IUser): Promise<IUser> => {
+const createUserIntoDB = async (payload: TUser): Promise<TUser> => {
   const result = await User.create(payload);
 
   return result;

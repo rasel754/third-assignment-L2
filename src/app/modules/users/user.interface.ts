@@ -1,10 +1,10 @@
-export type TUserName = {
+ export type TUserName = {
   firstName: string;
   middleName?: string;
   lastName: string;
 };
 
-export type IUser = {
+export type TUser = {
   name: TUserName;
   email: string;
   password: string;

@@ -3,6 +3,7 @@ import cors from 'cors';
 import globalErrorHandler from './app/middlwares/globalErrorHandlers';
 import { StatusCodes } from 'http-status-codes';
 import userRouter from './app/modules/users/user.route';
+import blogRouter from './app/modules/blog/blog.route';
 
 const app: Application = express();
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 //all routes 
 app.use('/api/',userRouter)
+app.use('/api/', blogRouter);
 
 
 

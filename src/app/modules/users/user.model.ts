@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { IUser, TUserName } from './user.interface';
+import { TUser, TUserName } from './user.interface';
 
 const userNameSchema = new Schema<TUserName>({
   firstName: {
@@ -19,7 +19,7 @@ const userNameSchema = new Schema<TUserName>({
   },
 });
 
-const UserSchema = new Schema<IUser>(
+const UserSchema = new Schema<TUser>(
   {
     name: {
       type: userNameSchema,
@@ -47,6 +47,6 @@ const UserSchema = new Schema<IUser>(
   { timestamps: true },
 );
 
-const User = model<IUser>('user', UserSchema);
+const User = model<TUser>('user', UserSchema);
 
 export default User;

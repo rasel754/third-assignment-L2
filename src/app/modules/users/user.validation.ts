@@ -13,8 +13,7 @@ const UserNameValidationSchema = z.object({
     .string()
     .transform((value) => value.trim()), 
 });
-
-export const userValidationSchema = z.object({
+ const userValidationSchema = z.object({
   body: z.object({
     name: UserNameValidationSchema,
     email: z.string().email('Invalid email format'),
