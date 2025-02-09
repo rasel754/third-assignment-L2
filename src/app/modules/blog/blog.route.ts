@@ -12,4 +12,21 @@ blogRouter.post(
   BlogController.createBLog,
 );
 
+blogRouter.get('/', BlogController.getAllBLogs);
+
+
+ blogRouter.delete(
+   '/:id',
+   BlogController.deleteBlog,
+ );
+
+
+ blogRouter.patch(
+   '/:id',
+   validateRequest(
+     BLoagValidation.updateBlogValidationSchema
+   ),
+  BlogController.updateBlog
+ );
+
 export default blogRouter;

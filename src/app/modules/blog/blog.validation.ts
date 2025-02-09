@@ -9,6 +9,16 @@ import { z } from "zod";
    }),
  });
 
+
+
+ const updateBlogValidationSchema = z.object({
+   body: z.object({
+     title: z.string().optional(),
+     content: z.string().optional(),
+   }),
+ });
+
 export const BLoagValidation = {
   createBlogValidationSchema,
+  updateBlogValidationSchema,
 };

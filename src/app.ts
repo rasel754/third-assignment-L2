@@ -4,6 +4,7 @@ import globalErrorHandler from './app/middlwares/globalErrorHandlers';
 import { StatusCodes } from 'http-status-codes';
 import userRouter from './app/modules/users/user.route';
 import blogRouter from './app/modules/blog/blog.route';
+import { AuthRoute } from './app/modules/auth/auth.route';
 
 const app: Application = express();
 
@@ -14,7 +15,8 @@ app.use(cors());
 
 //all routes 
 app.use('/api/',userRouter)
-app.use('/api/', blogRouter);
+app.use('/api/blogs', blogRouter);
+app.use('/api/auth', AuthRoute);
 
 
 

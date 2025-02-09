@@ -6,7 +6,8 @@ import handleValidationError from '../errors/handleValidationError';
 import handleCastError from '../errors/handleCastError';
 import handleDuplicateError from '../errors/handleDuplicateError';
 import AppError from '../errors/appError';
-import { config } from 'dotenv';
+import config from '../config';
+
 
 const globalErrorHandler = (
   err: any,
@@ -72,7 +73,7 @@ const globalErrorHandler = (
     message,
     errorSource,
     err,
-    // stack: config.node_env === 'development' ? err?.stack : null,
+     stack: config.node_env === 'development' ? err?.stack : null,
   });
 };
 
