@@ -80,6 +80,11 @@ UserSchema.statics.isPasswordMatched = async function (
   return await bcrypt.compare(plainTextPassword, hashPassword);
 };
 
+UserSchema.statics.UserFindBy_Id = async function (id: string) {
+  return await User.findById(id);
+};
+
+
 
 
 const User = model<TUser, UserModel>('user', UserSchema);

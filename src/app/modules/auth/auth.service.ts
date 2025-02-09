@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import { TLoginUser } from './auth.interface';
 import httpStatus from 'http-status';
 import config from '../../config';
+import { createAccessToken } from './auth.utils';
 
 const logingUser = async (payload: TLoginUser) => {
   console.log(payload);
@@ -26,7 +27,20 @@ const logingUser = async (payload: TLoginUser) => {
     throw new AppError(httpStatus.UNAUTHORIZED, 'password mismatch');
   }
 
-  return {};
+    const jwtPayload = {
+      userId: user?._id,
+      role: user?.role,
+    };
+
+    const accessToken = createAccessToken(
+      jwtPayload,
+      config.jwt_access_secret as string,
+      config.jwt_access_expire_in as string,
+    );
+
+  return {
+    accessToken,
+  };
 };
 
 
@@ -37,7 +51,11 @@ const registerUser = async (payload: TUser) => {
     throw new AppError(httpStatus.BAD_REQUEST, 'User already exists');
   }
 
-  const hashedPassword = await bcrypt.hash(payload.password, config.bcrypt_salt_rounds as string);
+  const hashedPassword = await bcrypt.hash(
+    payload.password,
+    // config.bcrypt_salt_rounds as string,
+    10
+  );
   payload.password = hashedPassword;
 
 

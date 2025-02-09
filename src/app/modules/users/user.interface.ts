@@ -1,4 +1,5 @@
-import { Model } from "mongoose";
+import { Model } from 'mongoose';
+import { USER_ROLE } from './user.constan';
 
 export type TUserName = {
   firstName: string;
@@ -7,6 +8,7 @@ export type TUserName = {
 };
 
 export type TUser = {
+  _id: string;
   name: TUserName;
   email: string;
   password: string;
@@ -21,4 +23,8 @@ export interface UserModel extends Model<TUser> {
     plainTextPassword: string,
     hashPassword: string,
   ): Promise<boolean>;
+
+  UserFindBy_Id(id: string): Promise<TUser | null>;
 }
+
+export type TUserRole = keyof typeof USER_ROLE;
