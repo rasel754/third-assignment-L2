@@ -33,8 +33,8 @@ const logingUser = async (payload: TLoginUser) => {
 
     const accessToken = createAccessToken(
       jwtPayload,
-      config.jwt_access_secret as string,
-      config.jwt_access_expire_in as string,
+      config.jwt_access_secret as string,   
+      config.jwt_access_expire_in as string, 
     );
 
   return {

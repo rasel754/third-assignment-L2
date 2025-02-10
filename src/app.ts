@@ -1,4 +1,4 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import globalErrorHandler from './app/middlwares/globalErrorHandlers';
 import { StatusCodes } from 'http-status-codes';
@@ -28,7 +28,10 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });
 
-app.use(globalErrorHandler);
+// app.use(globalErrorHandler);
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  globalErrorHandler(err, req, res, next);
+});
 
 app.use('*', (req: Request, res: Response) => {
   res.status(StatusCodes.NOT_FOUND).json({
