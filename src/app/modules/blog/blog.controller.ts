@@ -79,9 +79,30 @@ const updateBlog = catchAsync(async (req, res) => {
   });
 });
 
+
+const deleteBlogByAdmin = catchAsync(async (req, res) => {
+  const { id } = req.params;
+
+  const blog = await Blog.findById(id);
+  if (!blog) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Blog not found');
+  }
+
+  const result = await BlogServices.deleteAnyBlogFromDB(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Blog deleted successfully by admin',
+    data: result,
+  });
+});
+
+
 export const BlogController = {
   createBLog,
   getAllBLogs,
   deleteBlog,
   updateBlog,
+  deleteBlogByAdmin,
 };

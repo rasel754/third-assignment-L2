@@ -16,7 +16,6 @@ const getAllblogFromDB = async (query: Record<string, unknown>) => {
     .filter();
 
   const result = await blogQuery.modelQuery;
-  console.log(result);
 
   return result;
 };
@@ -38,9 +37,19 @@ const updateBlogIntoDB = async (
   return result;
 };
 
+
+
+const deleteAnyBlogFromDB = async (id: string) => {
+  const result = await Blog.findByIdAndDelete(id);
+  return result;
+};
+
+
+
 export const BlogServices = {
   createBLogIntoDB,
   getAllblogFromDB,
   deleteBLogFromDB,
   updateBlogIntoDB,
+  deleteAnyBlogFromDB,
 };

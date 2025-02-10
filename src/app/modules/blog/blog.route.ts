@@ -9,7 +9,7 @@ const blogRouter = Router();
 
 blogRouter.post(
   '/create-blog',
-  authenticate('user'),
+  authenticate('user' , 'admin'),
   validateRequest(BLoagValidation.createBlogValidationSchema),
   BlogController.createBLog,
 );
@@ -32,5 +32,12 @@ blogRouter.get('/',authenticate('admin','user'), BlogController.getAllBLogs);
    ),
   BlogController.updateBlog
  );
+
+ blogRouter.delete(
+   '/blogs/:id',
+   authenticate('admin'),
+   BlogController.deleteBlogByAdmin,
+ );
+
 
 export default blogRouter;

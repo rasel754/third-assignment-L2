@@ -16,13 +16,13 @@ app.use(cors());
 //all routes 
 app.use('/api/',userRouter)
 app.use('/api/blogs', blogRouter);
+app.use('/api/admin', blogRouter);//for admin routes
 app.use('/api/auth', AuthRoute);
 
 
 
+
 //
-
-
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');

@@ -8,7 +8,6 @@ import config from '../../config';
 import { createAccessToken } from './auth.utils';
 
 const logingUser = async (payload: TLoginUser) => {
-  console.log(payload);
   const user = await User.isUserExistsByEmail(payload.email);
 
   if (!user) {
